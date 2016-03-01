@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/atuxe/hik-dnspod/issues"
   },
-  "homepage": "https://github.com/atuxe/hik-dnspod#readme"
+  "homepage": "https://github.com/atuxe/hik-dnspod#readme",
+  "devDependencies": {
+    "dnspod-client": "^0.1.3"
+  }
 }
