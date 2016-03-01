@@ -1,0 +1,24 @@
+{
+  "name": "hik-dnspod",
+  "version": "1.0.0",
+  "description": "Change dns records on dnspod dynamically by IPServer protocal of Hikvision",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/atuxe/hik-dnspod.git"
+  },
+  "keywords": [
+    "hikvision",
+    "dnspod",
+    "ddns"
+  ],
+  "author": "Atuxe",
+  "license": "LGPL",
+  "bugs": {
+    "url": "https://github.com/atuxe/hik-dnspod/issues"
+  },
+  "homepage": "https://github.com/atuxe/hik-dnspod#readme"
+}
