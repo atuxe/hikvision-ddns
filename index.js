@@ -6,6 +6,7 @@ var dnspod = require('dnspod-client'),
 		'login_email': config.get('account.email'),
 		'login_password': config.get('account.password')
 	});
+var ip = null;
 
 // client
 // 	.domainList({
@@ -72,7 +73,7 @@ function checkData (hexString) {
 	 */
 	hexArray = hexString.split('000000');
 	var deviceId = hex2a(hexArray[2].slice(0, -2));
-	console.log(deviceId);
+	// console.log(deviceId);
 	if (config.get('devices').indexOf(deviceId) == -1) {
 		return false;
 	}
@@ -106,13 +107,20 @@ Array.prototype.remove = function(val) {
 };
 
 var server = net.createServer(function (socket) {
-	var ip = socket.remoteAddress.replace('::ffff:', '');
+	var newIp = socket.remoteAddress.replace('::ffff:', '');
+	if (ip === null) {
+		ip = newIp;
+	} else if(ip != newIp) {
+		ip = newIp;
+	}
+	
 	console.log(ip, socket.remotePort);
 	socket.on('data', function (data) {
 		var hexString = data.toString('hex');
 		util.log(hexString);
-		if (checkData(hexString)) {
-
+		if (checkData(hexString) && ip != newIp) {
+			// setRecord(ip);
+			util.log('Trigger setRecord');
 		}
 	});
 
