@@ -2,5 +2,15 @@
 	"account": {
 		"email": "hello@atuxe.com",
 		"password": "hello"
+	},
+	"devices": [
+		"DS-7604N-XXXXXXXX",
+		"DS-2DE7174-XXXXXXXX"
+	],
+	"domain": {
+		"domain_id": 2000000,
+		"record_id": 199999999,
+		"sub_domain": "ddns.atuxe",
+		"domain_name": "example.com"
 	}
 }
