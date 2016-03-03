@@ -73,7 +73,6 @@ function checkData (hexString) {
 	 */
 	hexArray = hexString.split('000000');
 	var deviceId = hex2a(hexArray[2].slice(0, -2));
-	// console.log(deviceId);
 	if (config.get('devices').indexOf(deviceId) == -1) {
 		return false;
 	}
@@ -110,17 +109,17 @@ var server = net.createServer(function (socket) {
 	var newIp = socket.remoteAddress.replace('::ffff:', '');
 	if (ip === null) {
 		ip = newIp;
-	} else if(ip != newIp) {
-		ip = newIp;
 	}
 	
-	console.log(ip, socket.remotePort);
+	// console.log('ip:', ip, socket.remotePort);
+	// console.log('new ip:', newIp, socket.remotePort);
 	socket.on('data', function (data) {
 		var hexString = data.toString('hex');
-		util.log(hexString);
-		if (checkData(hexString) && ip != newIp) {
-			// setRecord(ip);
-			util.log('Trigger setRecord');
+		// util.log(hexString);
+		if (ip != newIp && checkData(hexString)) {
+			ip = newIp;
+			setRecord(ip);
+			util.log('setRecord:' + ip);
 		}
 	});
 
@@ -130,7 +129,7 @@ var server = net.createServer(function (socket) {
 	});
 
 	socket.on('error', function (error) {
-		console.log(error);
+		// console.log(error);
 	});
 });
 
